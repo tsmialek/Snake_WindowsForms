@@ -6,25 +6,13 @@ using System.Threading.Tasks;
 
 namespace Snake_WindowsForms
 {
-    internal class Board : Control
+    internal class Board
     {
-        const int Size = 20;
+        private Border _boardBorder = new Border();
 
-        PictureBox Picture = new PictureBox()
+        public void Initialize(Form currentForm, int borderSize = 16)
         {
-            Size = new Size(20, 20),
-            BackColor = Color.Black
-        };
-
-        public void Draw(Form f)
-        {
-            for (int i = 0 ; i < 12; i++)
-            {
-                Picture.Location = new Point(12 + Size, 16);
-            }   
-
-            f.Controls.Add(Picture);
+            _boardBorder.Draw(currentForm, borderSize);
         }
-
     }
 }
