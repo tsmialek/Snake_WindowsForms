@@ -5,8 +5,8 @@ namespace Snake_WindowsForms
     internal class Board
     {
         public int TickSize { get; } = 40;
-        public int Width { get; set; } = 14;
-        public int Height { get; set; } = 14;
+        public int Width { get; set; } = 15;
+        public int Height { get; set; } = 15;
 
         public List<PictureBox> Snake = new List<PictureBox>(); 
         
@@ -49,8 +49,10 @@ namespace Snake_WindowsForms
         {
             Snake.Add(new PictureBox()
             {
-                Image = Image.FromFile(@"G:\Visual_Studio\repos\Snake_WindowsForms\Snake_WindowsForms\Graphics\head_right.png")
-            });
+                Size = new Size(39, 39),
+                BackColor = Color.RoyalBlue,
+                Location = new Point(1,1)
+            }) ;
         }
     }
 }
