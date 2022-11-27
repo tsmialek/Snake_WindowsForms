@@ -1,5 +1,4 @@
 ﻿
-
 namespace Snake_WindowsForms
 {
     internal class Board
@@ -7,6 +6,7 @@ namespace Snake_WindowsForms
         public int TickSize { get; } = 40;
         public int Width { get; set; } = 15;
         public int Height { get; set; } = 15;
+        public Fruit fruit;
 
         public List<PictureBox> Snake = new List<PictureBox>(); 
         
@@ -43,6 +43,7 @@ namespace Snake_WindowsForms
             {
                 currentForm.Controls.Add(part);
             }
+
         }
 
         public void CreateSnake()

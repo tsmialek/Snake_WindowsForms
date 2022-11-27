@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // GameForm
@@ -44,5 +46,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer gameTimer;
     }
 }
