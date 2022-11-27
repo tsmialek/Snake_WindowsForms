@@ -1,7 +1,7 @@
 ﻿
 namespace Snake_WindowsForms
 {
-    internal class Board
+    internal class Board : Form
     {
         public int TickSize { get; } = 40;
         public int Width { get; set; } = 15;
@@ -9,8 +9,10 @@ namespace Snake_WindowsForms
 
         public List<PictureBox> Snake = new List<PictureBox>(); 
         
+        //drawing the board
         public void Draw(Form currentForm)
         {
+            //vertical lines genereation
             for (int i = 0; i <= Height; i++)
             {
                 var vertical = new PictureBox()
@@ -24,6 +26,7 @@ namespace Snake_WindowsForms
                 currentForm.Controls.Add(vertical);
             }
 
+            //horizontal lines generation
             for (int i = 0; i <= Width; i++)
             {
                 var horizontal = new PictureBox()
@@ -36,10 +39,9 @@ namespace Snake_WindowsForms
                 horizontal.BringToFront();
                 currentForm.Controls.Add(horizontal);
             }
-
-
         }
 
+        //creating the head of the snake
         public void CreateSnake(Form currentForm)
         {
             PictureBox snakePart;
@@ -52,19 +54,30 @@ namespace Snake_WindowsForms
 
             Snake.Add(snakePart);
 
+            //adding another snake head on top of the existing one bc of Movement algorithm malfunction. Temporary solution
             if(Snake.Count <= 1)
                 CreateSnake(currentForm);
 
             currentForm.Controls.Add(snakePart);
         }
 
+        //setting up the rest of the snake's movement
         public void SnakeMovement()
         {
-            //Snake[1].Location = new Point(Snake[0].Location.X - (dirX * TickSize), Snake[0].Location.Y - (dirY * TickSize));
-            
-            for (int i = Snake.Count - 1; i >= 1; i--)
+            try
             {
-                Snake[i].Location = Snake[i - 1].Location;
+                for (int i = Snake.Count - 1; i >= 1; i--)
+                {
+                    Snake[i].Location = Snake[i - 1].Location;
+                }
+            }
+            catch(IndexOutOfRangeException)
+            {
+                MessageBox.Show("SnakeMovement function failed. Something went wron in setting picture box location");
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("SnakeMovement Function failed. Don't know what's the case");
             }
         }
 

@@ -5,6 +5,8 @@
         private Point _fruitPosition;
         public Point FruitPosition { get { return _fruitPosition; } }
         private PictureBox _fruit;
+
+        //Initializing the "fruit" picture box
         public Fruit(Form currentForm, int width, int height, int TickSize)
         {
             _fruit = new PictureBox()
@@ -18,11 +20,13 @@
             currentForm.Controls.Add(_fruit);
         }
 
+        //removing existing fruit from the board
         public void FruitRemove(Form currentForm)
         {
             currentForm.Controls.Remove(_fruit);
         }
         
+        //generating random fruit position
         private Point GenerateFruitPosition(int width, int height, int tickSize)
         {
             var tmp1 = new Random();
