@@ -2,24 +2,32 @@
 {
     internal class Fruit
     {
-        private Point _fruitPosition = new Point();
+        private Point _fruitPosition;
+        public Point FruitPosition { get { return _fruitPosition; } }
+        private PictureBox _fruit;
         public Fruit(Form currentForm, int width, int height, int TickSize)
         {
-            var fruit = new PictureBox()
+            _fruit = new PictureBox()
             {
-                Location = FruitPosition(width, height, TickSize),
+                Location = GenerateFruitPosition(width, height, TickSize),
                 BackColor = Color.Yellow,
-                Size = new Size(39, 39)
+                Size = new Size(39, 39),
+                Name = "fruit"
             };
 
-            currentForm.Controls.Add(fruit);
+            currentForm.Controls.Add(_fruit);
+        }
+
+        public void FruitRemove(Form currentForm)
+        {
+            currentForm.Controls.Remove(_fruit);
         }
         
-        private Point FruitPosition(int width, int height, int TickSize)
+        private Point GenerateFruitPosition(int width, int height, int tickSize)
         {
             var tmp1 = new Random();
             var tmp2 = new Random();
-            _fruitPosition = new Point(tmp1.Next(0, width - 1) * TickSize + 1, tmp2.Next(0, height - 1) * TickSize + 1);
+            _fruitPosition = new Point(tmp1.Next(0, width - 1) * tickSize + 1, tmp2.Next(0, height - 1) * tickSize + 1);
 
             return _fruitPosition;
         }

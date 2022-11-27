@@ -1,13 +1,13 @@
 ﻿
-
-using System.Text;
-
 namespace Snake_WindowsForms
 {
     internal class Control
     {
         private int _dirX = 0;
         private int _dirY = 0;
+
+        public int DirX{ get { return _dirX; } }
+        public int DirY{ get { return _dirY; } }
 
         public void Move(string keyCode)
         {

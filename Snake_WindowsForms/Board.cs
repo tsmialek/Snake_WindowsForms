@@ -6,7 +6,6 @@ namespace Snake_WindowsForms
         public int TickSize { get; } = 40;
         public int Width { get; set; } = 15;
         public int Height { get; set; } = 15;
-        public Fruit fruit;
 
         public List<PictureBox> Snake = new List<PictureBox>(); 
         
@@ -38,22 +37,36 @@ namespace Snake_WindowsForms
                 currentForm.Controls.Add(horizontal);
             }
 
-            CreateSnake();
-            foreach (var part in Snake)
-            {
-                currentForm.Controls.Add(part);
-            }
 
         }
 
-        public void CreateSnake()
+        public void CreateSnake(Form currentForm)
         {
-            Snake.Add(new PictureBox()
+            PictureBox snakePart;
+            snakePart = new PictureBox()
             {
                 Size = new Size(39, 39),
                 BackColor = Color.RoyalBlue,
-                Location = new Point(1,1)
-            }) ;
+                Location = new Point(1, 1)
+            };
+
+            Snake.Add(snakePart);
+
+            if(Snake.Count <= 1)
+                CreateSnake(currentForm);
+
+            currentForm.Controls.Add(snakePart);
         }
+
+        public void SnakeMovement()
+        {
+            //Snake[1].Location = new Point(Snake[0].Location.X - (dirX * TickSize), Snake[0].Location.Y - (dirY * TickSize));
+            
+            for (int i = Snake.Count - 1; i >= 1; i--)
+            {
+                Snake[i].Location = Snake[i - 1].Location;
+            }
+        }
+
     }
 }
